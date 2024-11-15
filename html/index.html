@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <!--  依赖外部js  -->
+    <!--  defer 确保在 HTML 文档解析完成后再执行脚本，适合需要 DOM 元素的脚本 -->
+    <script src="index.js" defer></script>
+    <!--  内联js  -->
+    <script>
+        console.log("012")
+    </script>
+
+    <!--  依赖外部css  -->
+    <link rel="stylesheet" href="index.css">
+    <!--  内联css  -->
+    <style>
+        body {
+            background-color: lightblue;
+        }
+        h1 {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <!--  HTML <header> 元素用于展示介绍性内容，通常包含一组介绍性的或是辅助导航的实用元素。
+    它可能包含一些标题元素，但也可能包含其他元素，比如 Logo、搜索框、作者名称，等等。-->
+    <header>
+        <!--   内联样式     -->
+        <h1 style="color: brown">主页标题</h1>
+        <img src="../src/assets/logo.svg" alt="mdn logo" width="16px" height="16px" />
+    </header>
+    <main>
+        <p>123</p>
+        <p>123</p>
+        <article class="forecast">
+            <h1>Weather forecast for Seattle</h1>
+            <article class="day-forecast">
+                <h2>03 March 2018</h2>
+                <p>Rain.</p>
+            </article>
+            <article class="day-forecast">
+                <h2>04 March 2018</h2>
+                <p>Periods of rain.</p>
+            </article>
+        </article>
+    </main>
+    <footer>
+        <h1>footer</h1>
+    </footer>
+
+    <script>
+        console.log("123")
+    </script>
+
+    <!-- 在 body 底部引入，确保 HTML 内容优先加载 -->
+    <script src="index.js"></script>
+</body>
+</html>
