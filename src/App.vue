@@ -4,13 +4,14 @@
 <script setup>
 import ListView from "@/components/list/ListView.vue";
 import VirtualListView from "@/components/list/VirtualListView.vue";
-import {ref,watch, shallowRef, reactive, computed } from "vue";
+import {ref, watch, shallowRef, reactive, computed, watchEffect} from "vue";
 import {useMouse, useEventListener} from "@/js/mouse.js";
 import {useFetch} from "@/js/fetch.js";
 
+
 // 在模板中使用 ref 时，我们不需要附加 .value
 const {x, y} = useMouse()
-const {data, error} = useFetch('https://www.baidu.com')
+const {data, error} = useFetch('')
 
 const count = ref(0)
 
@@ -23,6 +24,7 @@ function changeState() {
     isShow.value = false
   }
 }
+
 // reactive的每个属性都会代理
 const author = reactive({
   name: 'John Doe',
@@ -34,20 +36,57 @@ const author = reactive({
 })
 // 计算属性值会基于其响应式依赖被缓存
 const booksMessage = computed(() => {
-  return author.books.length > 0? 'yes': 'no'
+  return author.books.length > 0 ? 'yes' : 'no'
 })
 
 const message = ref('');
-watch(message, async(newMessage, oldMessage) => {
-
+// 监听输入框
+watch(message, async (newMessage, oldMessage) => {
+  console.log(`watch newMessage: ${newMessage}, oldMessage: ${oldMessage}`)
 })
+
+import {xyWatch, priceWatch} from "@/js/watch.js";
+
+xyWatch(x, y)
+
+const price = priceWatch()
+price.value = '1234'
+
+
+const obj = reactive({count: 0})
+// 不能直接监听obj.count，因为得到的是number, 需要用getter函数
+watch(() => obj.count, (count) => {
+  console.log(`Conut is: ${count}`)
+})
+// 深层侦听器
+// 即时回调的侦听器（创建时就执行一次）
+// 一次性侦听器（仅支持 3.4 及以上版本）
+watch(() => obj.count, (newValue, oldValue) => {
+
+}, {deep: true, immediate: true, once: true})
+
+const todoId = ref(1)
+const responseData = ref(null)
+watch(responseData, (json) => {
+  console.log(`watchEffect response json: ${JSON.stringify(json)}`)
+})
+// 执行期间，它会自动追踪 todoId.value 作为依赖（和计算属性类似）。
+// 每当 todoId.value 变化时，回调会再次执行。有了 watchEffect()，我们不再需要明确传递 todoId 作为源值
+watchEffect(async () => {
+  console.log('watchEffect execute')
+  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId.value}`)
+  const json = await response.json()
+  responseData.value = json
+})
+
+
 
 </script>
 
 <template>
   <header>
     <div>
-      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="12" height="12" />
+      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="12" height="12"/>
 
       <div class="wrapper">
         <p>Mouse position is at: {{ x }}, {{ y }}</p>
@@ -74,11 +113,13 @@ watch(message, async(newMessage, oldMessage) => {
     </div>
     <div>
       <div v-if="error">errror：{{ error.message }}</div>
-      <div v-else-if="data">data: <pre>{{data}}</pre></div>
+      <div v-else-if="data">data:
+        <pre>{{ data }}</pre>
+      </div>
       <div v-else>Loading...</div>
     </div>
 
-<!--    <ListView/>-->
+    <!--    <ListView/>-->
     <VirtualListView/>
   </main>
 </template>
