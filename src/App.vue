@@ -45,39 +45,33 @@ watch(message, async (newMessage, oldMessage) => {
   console.log(`watch newMessage: ${newMessage}, oldMessage: ${oldMessage}`)
 })
 
-import {xyWatch, priceWatch} from "@/js/watch.js";
+import {xyWatch, priceWatch, watchFunction} from "@/js/watch.js";
 
 xyWatch(x, y)
 
 const price = priceWatch()
 price.value = '1234'
 
+watchFunction()
 
-const obj = reactive({count: 0})
-// 不能直接监听obj.count，因为得到的是number, 需要用getter函数
-watch(() => obj.count, (count) => {
-  console.log(`Conut is: ${count}`)
+//  模版引用
+import {useTemplateRef, onMounted} from "vue";
+const input = useTemplateRef(`in-input`)
+onMounted(() => {
+  if (input.value) {
+    input.value.focus()
+  }
 })
-// 深层侦听器
-// 即时回调的侦听器（创建时就执行一次）
-// 一次性侦听器（仅支持 3.4 及以上版本）
-watch(() => obj.count, (newValue, oldValue) => {
+watchEffect(() => {
+  if (input.value) {
+    input.value.focus()
+  }
+})
+const list = ref(['aaa', 'bbb', 'ccc'])
+const itemRefs = useTemplateRef('items')
+onMounted(() => console.log('items:', itemRefs.value))
 
-}, {deep: true, immediate: true, once: true})
 
-const todoId = ref(1)
-const responseData = ref(null)
-watch(responseData, (json) => {
-  console.log(`watchEffect response json: ${JSON.stringify(json)}`)
-})
-// 执行期间，它会自动追踪 todoId.value 作为依赖（和计算属性类似）。
-// 每当 todoId.value 变化时，回调会再次执行。有了 watchEffect()，我们不再需要明确传递 todoId 作为源值
-watchEffect(async () => {
-  console.log('watchEffect execute')
-  const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId.value}`)
-  const json = await response.json()
-  responseData.value = json
-})
 
 
 
@@ -93,7 +87,12 @@ watchEffect(async () => {
       </div>
       <div>
         <p>Message is: {{ message }}</p>
-        <input v-model="message" placeholder="edit me"/>
+        <input v-model="message" placeholder="edit me" ref="my-input"/>
+      </div>
+      <div>
+        <ul>
+          <li v-for="item in list" ref="items">{{item}}</li>
+        </ul>
       </div>
     </div>
   </header>
