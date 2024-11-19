@@ -7,6 +7,10 @@ import VirtualListView from "@/components/list/VirtualListView.vue";
 import {ref, watch, shallowRef, reactive, computed, watchEffect} from "vue";
 import {useMouse, useEventListener} from "@/js/mouse.js";
 import {useFetch} from "@/js/fetch.js";
+import OptionsApi from "@/components/OptionsApi.vue";
+import BlogPost from "@/components/props/BlogPost.vue";
+import AlertBox from "@/components/slot/AlertBox.vue";
+import TabView from "@/components/dynamic_component/TabView.vue";
 
 
 // 在模板中使用 ref 时，我们不需要附加 .value
@@ -72,7 +76,12 @@ const itemRefs = useTemplateRef('items')
 onMounted(() => console.log('items:', itemRefs.value))
 
 
-
+const posts = ref([
+  { id: 1, title: 'My journey with Vue' },
+  { id: 2, title: 'Blogging with Vue' },
+  { id: 3, title: 'Why Vue is so fun' }
+])
+const postFontSize = ref(1)
 
 
 </script>
@@ -80,6 +89,14 @@ onMounted(() => console.log('items:', itemRefs.value))
 <template>
   <header>
     <div>
+      <TabView/>
+      <AlertBox>123</AlertBox>
+      <div :style="{fontSize: postFontSize + 'em'}">
+        <BlogPost title="My Demo"/>
+        <BlogPost v-for="post in posts" :key="post.id" :title="post.title"
+         @enlarge-text="postFontSize += 0.1" @enlarge-text1="postFontSize += 0.2"/>
+      </div>
+<!--      <OptionsApi></OptionsApi>-->
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="12" height="12"/>
 
       <div class="wrapper">
@@ -94,6 +111,7 @@ onMounted(() => console.log('items:', itemRefs.value))
           <li v-for="item in list" ref="items">{{item}}</li>
         </ul>
       </div>
+
     </div>
   </header>
 

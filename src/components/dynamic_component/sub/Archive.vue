@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<time date></time>
+  <div class="tab">
+    Archive component
+  </div>
 </template>
 
 <style scoped>
