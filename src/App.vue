@@ -4,14 +4,15 @@
 <script setup>
 import ListView from "@/components/list/ListView.vue";
 import VirtualListView from "@/components/list/VirtualListView.vue";
-import {ref, watch, shallowRef, reactive, computed, watchEffect} from "vue";
+import {ref, watch, shallowRef, reactive, computed, watchEffect, getCurrentInstance, inject} from "vue";
 import {useMouse, useEventListener} from "@/js/mouse.js";
 import {useFetch} from "@/js/fetch.js";
 import OptionsApi from "@/components/OptionsApi.vue";
 import BlogPost from "@/components/props/BlogPost.vue";
 import AlertBox from "@/components/slot/AlertBox.vue";
 import TabView from "@/components/dynamic_component/TabView.vue";
-
+import Parent from "@/components/viewmode/Parent.vue";
+import Provide from "@/components/provide_inject/Provide.vue";
 
 // 在模板中使用 ref 时，我们不需要附加 .value
 const {x, y} = useMouse()
@@ -60,6 +61,7 @@ watchFunction()
 
 //  模版引用
 import {useTemplateRef, onMounted} from "vue";
+
 const input = useTemplateRef(`in-input`)
 onMounted(() => {
   if (input.value) {
@@ -77,11 +79,20 @@ onMounted(() => console.log('items:', itemRefs.value))
 
 
 const posts = ref([
-  { id: 1, title: 'My journey with Vue' },
-  { id: 2, title: 'Blogging with Vue' },
-  { id: 3, title: 'Why Vue is so fun' }
+  {id: 1, title: 'My journey with Vue'},
+  {id: 2, title: 'Blogging with Vue'},
+  {id: 3, title: 'Why Vue is so fun'}
 ])
 const postFontSize = ref(1)
+
+onMounted(() => {
+  const appInstance = getCurrentInstance()?.proxy?.$app;
+  console.log(`app: ${appInstance}`)
+  const appInstance2 = inject('appInstance');
+  console.log(`appInstance2: ${appInstance2}`); // 访问 app 实例
+  console.log(appInstance === appInstance2)
+})
+
 
 
 </script>
@@ -89,14 +100,16 @@ const postFontSize = ref(1)
 <template>
   <header>
     <div>
+      <Provide/>
+      <Parent />
       <TabView/>
       <AlertBox>123</AlertBox>
       <div :style="{fontSize: postFontSize + 'em'}">
         <BlogPost title="My Demo"/>
         <BlogPost v-for="post in posts" :key="post.id" :title="post.title"
-         @enlarge-text="postFontSize += 0.1" @enlarge-text1="postFontSize += 0.2"/>
+                  @enlarge-text="postFontSize += 0.1" @enlarge-text1="postFontSize += 0.2"/>
       </div>
-<!--      <OptionsApi></OptionsApi>-->
+      <!--      <OptionsApi></OptionsApi>-->
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="12" height="12"/>
 
       <div class="wrapper">
@@ -108,7 +121,7 @@ const postFontSize = ref(1)
       </div>
       <div>
         <ul>
-          <li v-for="item in list" ref="items">{{item}}</li>
+          <li v-for="item in list" ref="items">{{ item }}</li>
         </ul>
       </div>
 
