@@ -7,12 +7,20 @@ import VirtualListView from "@/components/list/VirtualListView.vue";
 import {ref, watch, shallowRef, reactive, computed, watchEffect, getCurrentInstance, inject} from "vue";
 import {useMouse, useEventListener} from "@/js/mouse.js";
 import {useFetch} from "@/js/fetch.js";
-import OptionsApi from "@/components/OptionsApi.vue";
+import OptionsApi from "@/components/options_api/OptionsApi.vue";
 import BlogPost from "@/components/props/BlogPost.vue";
 import AlertBox from "@/components/slot/AlertBox.vue";
 import TabView from "@/components/dynamic_component/TabView.vue";
 import Parent from "@/components/viewmode/Parent.vue";
 import Provide from "@/components/provide_inject/Provide.vue";
+//  模版引用
+import {useTemplateRef, onMounted} from "vue";
+import {xyWatch, priceWatch, watchFunction} from "@/js/watch.js";
+
+import VFocus from "@/components/custom_directives/VFocus.vue";
+import TransitionView from "@/components/transition/TransitionView.vue";
+import TeleportView from "@/components/teleport/TeleportView.vue";
+import SimpleRoute from "@/components/route/SimpleRoute.vue";
 
 // 在模板中使用 ref 时，我们不需要附加 .value
 const {x, y} = useMouse()
@@ -50,8 +58,6 @@ watch(message, async (newMessage, oldMessage) => {
   console.log(`watch newMessage: ${newMessage}, oldMessage: ${oldMessage}`)
 })
 
-import {xyWatch, priceWatch, watchFunction} from "@/js/watch.js";
-
 xyWatch(x, y)
 
 const price = priceWatch()
@@ -59,8 +65,6 @@ price.value = '1234'
 
 watchFunction()
 
-//  模版引用
-import {useTemplateRef, onMounted} from "vue";
 
 const input = useTemplateRef(`in-input`)
 onMounted(() => {
@@ -86,20 +90,26 @@ const posts = ref([
 const postFontSize = ref(1)
 
 onMounted(() => {
-  const appInstance = getCurrentInstance()?.proxy?.$app;
-  console.log(`app: ${appInstance}`)
-  const appInstance2 = inject('appInstance');
-  console.log(`appInstance2: ${appInstance2}`); // 访问 app 实例
-  console.log(appInstance === appInstance2)
+  const app = getCurrentInstance()?.proxy?.$app;
+  console.log(`app: ${app}`)
+  const app2 = inject('appInstance');
+  console.log(`app2: ${app2}`); // 访问 app 实例
+  console.log(app === app2)
+
 })
 
-
-
+const i18n = inject('i18n')
+console.log(i18n.greetings.hello)
 </script>
 
 <template>
   <header>
     <div>
+      <SimpleRoute />
+      <TeleportView />
+      <TransitionView />
+      <h1>translate: {{ $translate('greetings.hello') }}</h1>
+      <VFocus />
       <Provide/>
       <Parent />
       <TabView/>

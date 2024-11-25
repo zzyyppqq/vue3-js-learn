@@ -11,12 +11,18 @@ const tabs = {Home, Posts, Archive}
 </script>
 
 <template>
-<div class="demo">
-  <button v-for="(_, tab) in tabs" :key="tabs"
-          :class="['tab-button', {active: currentTab === tab }]"
-          @click="currentTab = tab">{{tab}}</button>
-  <component :is="tabs[currentTab]" class="tab"></component>
-</div>
+  <div class="demo">
+    <button v-for="(_, tab) in tabs" :key="tabs"
+            :class="['tab-button', {active: currentTab === tab }]"
+            @click="currentTab = tab">{{ tab }}
+    </button>
+    <!-- 为过渡效果命名 被应用的 class 将会是 fade-enter-active 而不是 v-enter-active-->
+    <Transition name="fade" mode="out-in">
+      <KeepAlive>
+        <component :is="tabs[currentTab]" class="tab"></component>
+      </KeepAlive>
+    </Transition>
+  </div>
 </template>
 
 <style scoped>
@@ -41,14 +47,27 @@ const tabs = {Home, Posts, Archive}
   margin-bottom: -1px;
   margin-right: -1px;
 }
+
 .tab-button:hover {
   background: #d45555;
 }
+
 .tab-button.active {
   background: #e0e0e0;
 }
+
 .tab {
   border: 1px solid #ccc;
   padding: 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
