@@ -16,11 +16,13 @@ import Provide from "@/components/provide_inject/Provide.vue";
 //  模版引用
 import {useTemplateRef, onMounted} from "vue";
 import {xyWatch, priceWatch, watchFunction} from "@/js/watch.js";
-
 import VFocus from "@/components/custom_directives/VFocus.vue";
 import TransitionView from "@/components/transition/TransitionView.vue";
 import TeleportView from "@/components/teleport/TeleportView.vue";
 import SimpleRoute from "@/components/route/SimpleRoute.vue";
+import PiniaView from "@/components/pinia/PiniaView.vue";
+import RouterLinkPage from "@/components/route/RouterLinkPage.vue";
+
 
 // 在模板中使用 ref 时，我们不需要附加 .value
 const {x, y} = useMouse()
@@ -100,11 +102,16 @@ onMounted(() => {
 
 const i18n = inject('i18n')
 console.log(i18n.greetings.hello)
+
+
+
 </script>
 
 <template>
   <header>
     <div>
+      <RouterLinkPage />
+      <PiniaView />
       <SimpleRoute />
       <TeleportView />
       <TransitionView />

@@ -5,7 +5,11 @@ import { createApp, defineAsyncComponent } from 'vue'
 import App from './App.vue'
 import myDirective, {installPlugin} from "@/js/directive.js";
 import i18nPlugin from "@/plugin/i18n.js";
+import {createPinia} from "pinia";
+import router from "@/js/router.js";
+import FullScreenApp from "@/FullScreenApp.vue";
 const app = createApp(App)
+// const app = createApp(FullScreenApp)
 // 使 v-focus 在所有组件中都可用
 app.directive('focus', {
     /* ... */
@@ -28,12 +32,21 @@ installPlugin(app)
 // 局部指令：可以直接在组件内定义和使用。
 // 使用插件注册指令
 app.use(myDirective)
+// 创建一个 pinia 实例 (根 store) 并将其传递给应用
+const pinia = createPinia()
+app.use(pinia)
 
 app.use(i18nPlugin, {
     greetings: {
         hello: 'Bonjour!'
     }
 })
+/**
+ * 全局注册 RouterView 和 RouterLink 组件。
+ * 添加全局 $router 和 $route 属性。
+ * 启用 useRouter() 和 useRoute() 组合式函数。
+ */
+app.use(router)
 
 // .mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 app.mount('#app')

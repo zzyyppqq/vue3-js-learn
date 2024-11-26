@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[vuejs/petite-vue：针对渐进增强而优化的 Vue 的 6kb 子集](https://github.com/vuejs/petite-vue)-->
+<head>
+    <meta charset="UTF-8">
+    <title>petite-vue</title>
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+</head>
+<body>
+    <div v-scope="{ count: 0}">
+        {{count}}
+        <button @click="count++">inc</button>
+    </div>
+</body>
+</html>
