@@ -26,6 +26,7 @@ html, body, #app {
   padding: 0;
   overflow-x: hidden;
   overflow-y: scroll;
+  overflow: auto; /* 添加滚动条 */
 }
 
 #app {
@@ -37,7 +38,7 @@ html, body, #app {
 /*路由区域全屏，且没有边距*/
 .router-view {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;

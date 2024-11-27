@@ -10,7 +10,7 @@ import router from "@/router/router.js";
 import FullScreenApp from "@/FullScreenApp.vue";
 import PhoneApp from "@/PhoneApp.vue";
 // 1. 引入你需要的组件
-import {Button, Slider} from "vant";
+import {Button, Slider, Tabbar, TabbarItem} from "vant";
 // 2. 引入组件样式
 import 'vant/lib/index.css';
 
@@ -58,6 +58,8 @@ app.use(router)
 
 app.use(Button)
     .use(Slider)
+    .use(Tabbar)
+    .use(TabbarItem)
 
 // .mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 app.mount('#app')
