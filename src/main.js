@@ -6,9 +6,17 @@ import App from './App.vue'
 import myDirective, {installPlugin} from "@/js/directive.js";
 import i18nPlugin from "@/plugin/i18n.js";
 import {createPinia} from "pinia";
-import router from "@/js/router.js";
+import router from "@/router/router.js";
 import FullScreenApp from "@/FullScreenApp.vue";
-const app = createApp(App)
+import PhoneApp from "@/PhoneApp.vue";
+// 1. 引入你需要的组件
+import {Button, Slider} from "vant";
+// 2. 引入组件样式
+import 'vant/lib/index.css';
+
+
+const app = createApp(PhoneApp)
+// const app = createApp(App)
 // const app = createApp(FullScreenApp)
 // 使 v-focus 在所有组件中都可用
 app.directive('focus', {
@@ -47,6 +55,9 @@ app.use(i18nPlugin, {
  * 启用 useRouter() 和 useRoute() 组合式函数。
  */
 app.use(router)
+
+app.use(Button)
+    .use(Slider)
 
 // .mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 app.mount('#app')
