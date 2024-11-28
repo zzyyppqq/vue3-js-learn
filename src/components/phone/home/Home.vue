@@ -1,81 +1,85 @@
 <script setup>
-import { ref } from 'vue';
-import { showToast } from 'vant';
-
+import {ref} from 'vue';
+import {showToast} from 'vant';
+import TabbarView from "@/components/phone/tabbar/TabbarView.vue";
+import {useRouter} from "vue-router";
+const router = useRouter()
 
 const value = ref(50);
 const onChange = (value) => showToast('当前值：' + value);
 
-const active = ref(0);
+const onMyHome = () => {
+  router.push({ path: '/my-home' })
+}
+
 
 </script>
 
 <template>
-  <div class="div-full">
-    <van-button plain type="primary">主要按钮</van-button>
-    <van-button type="success">成功按钮</van-button>
-    <van-button type="default">默认按钮</van-button>
-    <van-button type="danger">危险按钮</van-button>
-    <van-button type="warning">警告按钮</van-button>
+  <div>
+    <TabbarView />
+    <div class="content">
+      <van-button plain type="primary" @click="onMyHome">MyHome</van-button>
+      <van-button type="success">成功按钮</van-button>
+      <van-button type="default">默认按钮</van-button>
+      <van-button type="danger">危险按钮</van-button>
+      <van-button type="warning">警告按钮</van-button>
 
-    <van-button disabled type="primary">禁用状态</van-button>
-    <van-button disabled type="success">禁用状态</van-button>
+      <van-button disabled type="primary">禁用状态</van-button>
+      <van-button disabled type="success">禁用状态</van-button>
 
-    <VanButton>123</VanButton>
-    <VanButton>123</VanButton>
-    <VanButton>123</VanButton>
-    <VanButton>123</VanButton>
-    <br/>
-
-    <van-slider v-model="value" @change="onChange" ></van-slider>
-    <br/>
-    <br/>
-    <VanSlider  v-model="value" @change="onChange" ></VanSlider>
-
-    <van-tabbar v-model="active">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-    </van-tabbar>
+      <div class="div-center">
+        <p>居中</p>
+      </div>
+      <div class="div-center2">
+        <p>居中</p>
+      </div>
 
 
-<!--    <div class="tab-bar">-->
-<!--      <span>111</span>-->
-<!--    </div>-->
+
+      <van-slider v-model="value" @change="onChange"></van-slider>
+      <br/>
+      <VanSlider v-model="value" @change="onChange"></VanSlider>
+    </div>
+
+
   </div>
 
 </template>
 
 <style scoped>
-.div-full {
-  height: calc(100% - 50px);
+/*content区域需用单独的div包裹，通过padding-bottom，保证底部tabbar不覆盖内容*/
+.content {
+  flex: 1;  /* 让内容区域占据剩余空间 */
+  overflow-y: scroll; /* 允许滚动 */
+  padding-bottom: 100px;
+  background-color: white;
 }
+
 .van-button {
   margin: 10px;
-  display: block;
-}
-.van-tabbar {
-  background-color: #d45555;
+  /*display: block;*/
 }
 
-.div-bottom {
-  width: 100%;
-  height: 50px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: #d45555;
+.div-center {
+  width: 100px;
+  height: 100px;
+  text-align: center;/* 水平中心*/
+  align-content: center;/* 竖直中心*/
+  background-color: #4CAF50;
+  margin: 10px;
 }
 
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background-color: #d45555;
-  padding: 10px; /* 可根据需要调整底部 TabBar 的内边距 */
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* 可选：添加阴影效果 */
+.div-center2 {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  width: 100px; /* 设置容器宽度 */
+  height: 100px; /* 设置容器高度 */
+  background-color: #33adc4;
+  margin: 10px;
+  font-size: 20px;
+  color: #f90a0a;
 }
+
 </style>

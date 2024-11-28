@@ -15,7 +15,7 @@
 </template>
 
 <style scoped>
-/* main.css 或 App.vue 的 style */
+/* tabbar.css 或 App.vue 的 style */
 html, body, #app {
   height: 100%;
   margin: 0;

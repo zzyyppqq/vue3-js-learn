@@ -18,21 +18,27 @@ console.log("router: ",JSON.stringify(router))
 
 <style scoped>
 
-/* main.css 或 App.vue 的 style */
-html, body, #app {
+/* tabbar.css 或 App.vue 的 style */
+html, body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: scroll; /* 允许滚动 */
   overflow: auto; /* 添加滚动条 */
+  background-color: white;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #app {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  background-color: white;
 }
 
 /*路由区域全屏，且没有边距*/
@@ -48,7 +54,4 @@ html, body, #app {
   background-color: white;
 }
 
-.van-badge--fixed {
-  z-index: 1000;
-}
 </style>

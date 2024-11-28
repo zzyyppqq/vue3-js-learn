@@ -10,7 +10,7 @@ import router from "@/router/router.js";
 import FullScreenApp from "@/FullScreenApp.vue";
 import PhoneApp from "@/PhoneApp.vue";
 // 1. 引入你需要的组件
-import {Button, Slider, Tabbar, TabbarItem} from "vant";
+import {Button, Slider, Tabbar, TabbarItem, Search, NavBar} from "vant";
 // 2. 引入组件样式
 import 'vant/lib/index.css';
 
@@ -36,7 +36,7 @@ app.config.errorHandler = (err) => {
 }
 
 installPlugin(app)
-// 全局指令：可以在 main.js 或专门的文件中注册，然后通过 app.directive() 注册。
+// 全局指令：可以在 tabbar.js 或专门的文件中注册，然后通过 app.directive() 注册。
 // 局部指令：可以直接在组件内定义和使用。
 // 使用插件注册指令
 app.use(myDirective)
@@ -60,6 +60,8 @@ app.use(Button)
     .use(Slider)
     .use(Tabbar)
     .use(TabbarItem)
+    .use(Search)
+    .use(NavBar)
 
 // .mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 app.mount('#app')

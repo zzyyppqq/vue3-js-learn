@@ -11,7 +11,11 @@ export default defineConfig({
     host: '0.0.0.0', // 允许局域网访问
     proxy: {
       // 可选的代理配置
-    }
+    },
+    hmr: {
+      host: 'localhost', // 配置 HMR 的 host
+      clientPort: 9999,  // 客户端端口
+    },
   },
   plugins: [
     vue(),
