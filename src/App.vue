@@ -110,10 +110,6 @@ console.log(i18n.greetings.hello)
 <template>
   <header>
     <div>
-      <!--  Unicode使用方式   -->
-      <span class="iconfont">&#xe60a;</span>
-      <!--  Font class使用方式    -->
-      <span class="iconfont icon-home_home_h"></span>
       <RouterLinkPage />
       <PiniaView />
       <SimpleRoute />
@@ -213,24 +209,5 @@ header {
   }
 }
 
-
-@font-face {
-  font-family: "iconfont"; /* Project id 4761145 */
-  src: url('//at.alicdn.com/t/c/font_4761145_2mpcebvm01v.woff2?t=1732671017559') format('woff2'),
-  url('//at.alicdn.com/t/c/font_4761145_2mpcebvm01v.woff?t=1732671017559') format('woff'),
-  url('//at.alicdn.com/t/c/font_4761145_2mpcebvm01v.ttf?t=1732671017559') format('truetype');
-}
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-home_home_h:before {
-  content: "\e60a";
-}
 
 </style>
