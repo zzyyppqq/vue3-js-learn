@@ -35,7 +35,7 @@ const onTabBarChange = (index) => {
 <!--    </van-tabbar>-->
 
     <!-- 路由模式-->
-    <van-tabbar route>
+    <van-tabbar route fixed placeholder>
       <van-tabbar-item replace to="/" icon="home-o">Home</van-tabbar-item>
       <van-tabbar-item replace to="/search" icon="search" dot>Search</van-tabbar-item>
       <van-tabbar-item replace to="/friends" icon="friends-o" badge="5">Friends</van-tabbar-item>
@@ -45,10 +45,5 @@ const onTabBarChange = (index) => {
 </template>
 
 <style scoped>
-
-.van-tabbar {
-  z-index: 10000;
-  height: 50px;
-}
 
 </style>

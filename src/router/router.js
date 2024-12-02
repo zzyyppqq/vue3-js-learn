@@ -6,11 +6,13 @@ import Search from "@/components/phone/search/Search.vue";
 import Setting from "@/components/phone/setting/Setting.vue";
 import Friends from "@/components/phone/friends/Friends.vue";
 import MyHome from "@/components/phone/home/MyHome.vue";
+import VanListView from "@/components/list/VanListView.vue";
 
 
 const routes = [
     { path: '/', component: Home },
     { path: '/my-home', component: MyHome },
+    { path: '/van-list-view', component: VanListView },
     { path: '/search', component: Search },
     { path: '/friends', component: Friends },
     { path: '/setting', component: Setting },

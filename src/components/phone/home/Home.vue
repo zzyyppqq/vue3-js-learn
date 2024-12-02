@@ -12,15 +12,20 @@ const onMyHome = () => {
   router.push({ path: '/my-home' })
 }
 
+const vanListPage = () => {
+  router.push({ path: '/van-list-view' })
+}
 
 </script>
 
 <template>
-  <div>
-    <van-nav-bar fixed="true" title="Home" />
-    <TabbarView />
+  <div class="vertical-layout">
+<!--    placeholder: 固定在顶部时，是否在标签位置生成一个等高的占位元素-->
+    <van-nav-bar fixed="true" placeholder title="Home" />
+
     <div class="content">
       <van-button plain type="primary" @click="onMyHome">MyHome</van-button>
+      <van-button type="default" @click="vanListPage">van list</van-button>
       <van-button type="success">成功按钮</van-button>
       <van-button type="default">默认按钮</van-button>
       <van-button type="danger">危险按钮</van-button>
@@ -45,21 +50,33 @@ const onMyHome = () => {
       <div class="div-center-position">
         <p>居中</p>
       </div>
+      <div class="div-center-position">
+        <p>居中</p>
+      </div>
+      <div class="div-center-position">
+        <p>居中</p>
+      </div>
 
     </div>
 
-
+    <TabbarView />
   </div>
 
 </template>
 
 <style scoped>
+.vertical-layout {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
 /*content区域需用单独的div包裹，通过padding-bottom，保证底部tabbar不覆盖内容*/
 .content {
   flex: 1;  /* 让内容区域占据剩余空间 */
   overflow-y: scroll; /* 允许滚动 */
-  padding-top: 50px;
-  padding-bottom: 100px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   background-color: white;
 }
 
