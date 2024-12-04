@@ -7,18 +7,16 @@ import myDirective, {installPlugin} from "@/js/directive.js";
 import i18nPlugin from "@/plugin/i18n.js";
 import {createPinia} from "pinia";
 import router from "@/router/router.js";
-import FullScreenApp from "@/FullScreenApp.vue";
-import PhoneApp from "@/PhoneApp.vue";
 // 1. 引入你需要的组件
-import {Button, Slider, Tabbar, TabbarItem, Search, NavBar, PullRefresh, List, Cell} from "vant";
+import Vant from "vant";
 // 2. 引入组件样式
 import 'vant/lib/index.css';
+import '@/wanandroid/css/style.css'
+
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const app = createApp(PhoneApp)
-// const app = createApp(App)
-// const app = createApp(FullScreenApp)
+const app = createApp(App)
 // 使 v-focus 在所有组件中都可用
 app.directive('focus', {
     /* ... */
@@ -59,15 +57,8 @@ app.use(router)
 
 app.use(VueVirtualScroller)
 
-app.use(Button)
-    .use(Slider)
-    .use(Tabbar)
-    .use(TabbarItem)
-    .use(Search)
-    .use(NavBar)
-    .use(PullRefresh)
-    .use(List)
-    .use(Cell)
+app.use(Vant)
+app.use(Vant.Lazyload)
 
 // .mount() 方法应该始终在整个应用配置和资源注册完成后被调用
 app.mount('#app')

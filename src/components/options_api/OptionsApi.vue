@@ -6,23 +6,26 @@ import {ref} from "vue";
 export default {
   name: "OptionsApi",
   props: ['title'],
-  setup() {
+  setup(props) {
+    // 在 setup() 中，this 指向的并不是 Vue 实例，因此不能直接使用 this.props 或 this.count 等。
     const count = ref(0)
-    console.log(this.props.title)
+    console.log(props.title)
     return { count }
   },
-  template: `
-    <button @click="count++">You click me {{count}} times.</button>
-  `,
   mounted() {
+    // 在 mounted() 中，this 指向 Vue 实例
     // setup() 暴露的属性可以在通过 `this` 访问到
     console.log(this.count)
+    // props title
+    console.log(this.title)
+    console.log("$router: ", this.$router)
+    console.log("$route: ", this.$route)
   }
 }
 </script>
 
 <template>
-
+  <van-button @click="count++">You click me {{count}} times.</van-button>
 </template>
 
 <style scoped>

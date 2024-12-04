@@ -3,6 +3,8 @@ import {ref} from 'vue';
 import {showToast} from 'vant';
 import TabbarView from "@/components/phone/tabbar/TabbarView.vue";
 import {useRouter} from "vue-router";
+import OptionsApi from "@/components/options_api/OptionsApi.vue";
+
 const router = useRouter()
 
 const value = ref(50);
@@ -24,8 +26,6 @@ const virtualListPage = () => {
   router.push({ path: '/virtual-list-view' })
 }
 
-
-
 </script>
 
 <template>
@@ -35,6 +35,7 @@ const virtualListPage = () => {
 
     <div class="content">
       <van-button type="primary" @click="onMyHome">MyHome</van-button>
+      <van-button @click="router.push('/learn-page')">learn page</van-button>
       <van-button type="success" @click="listViewPage">list</van-button>
       <van-button type="default" @click="vanListPage">van list</van-button>
       <van-button type="danger" @click="virtualListPage">virtual list</van-button>
@@ -48,7 +49,12 @@ const virtualListPage = () => {
       <van-slider v-model="value" @change="onChange"></van-slider>
       <br/>
       <VanSlider v-model="value" @change="onChange"></VanSlider>
-
+      <br/>
+      <OptionsApi title="1234"/>
+      <br/>
+      <OptionsApiTemplate title="1234"/>
+      <DynamicComponent title="1234"/>
+      <br/>
       <div class="div-center-flex">
         <p>居中</p>
       </div>
@@ -56,12 +62,6 @@ const virtualListPage = () => {
         <p>居中</p>
       </div>
       <div class="div-center-line-h">
-        <p>居中</p>
-      </div>
-      <div class="div-center-position">
-        <p>居中</p>
-      </div>
-      <div class="div-center-position">
         <p>居中</p>
       </div>
       <div class="div-center-position">
