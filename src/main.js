@@ -1,4 +1,4 @@
-import './assets/main.css'
+// import './assets/main.css'
 
 import { createApp, defineAsyncComponent } from 'vue'
 // 从一个单文件组件中导入根组件
@@ -13,7 +13,8 @@ import PhoneApp from "@/PhoneApp.vue";
 import {Button, Slider, Tabbar, TabbarItem, Search, NavBar, PullRefresh, List, Cell} from "vant";
 // 2. 引入组件样式
 import 'vant/lib/index.css';
-
+import VueVirtualScroller from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const app = createApp(PhoneApp)
 // const app = createApp(App)
@@ -55,6 +56,8 @@ app.use(i18nPlugin, {
  * 启用 useRouter() 和 useRoute() 组合式函数。
  */
 app.use(router)
+
+app.use(VueVirtualScroller)
 
 app.use(Button)
     .use(Slider)

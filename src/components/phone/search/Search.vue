@@ -1,12 +1,10 @@
 <script setup>
-
 import TabbarView from "@/components/phone/tabbar/TabbarView.vue";
+
 </script>
 
 <template>
-  <!--  <div>-->
   <div>
-    <TabbarView/>
     <div class="content">
       <div class="div-search">
         <van-search></van-search>
@@ -24,16 +22,16 @@ import TabbarView from "@/components/phone/tabbar/TabbarView.vue";
         </div>
       </div>
     </div>
+    <TabbarView/>
   </div>
-  <!--  </div>-->
 </template>
 
 <style lang="less" scoped>
+
 .content {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-  padding-bottom: 100px;
   background-color: #cb95e0; /*超过一屏幕的颜色设置*/
 }
 

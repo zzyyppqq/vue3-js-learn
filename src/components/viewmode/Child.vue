@@ -17,9 +17,9 @@ const emit = defineEmits(['update:modelValue'])
 </template>
 
 <style scoped>
-div input {
-  //display: block;
-  //display: flex;
-  //flex-direction: column;
-}
+/*div input {
+  display: block;
+  display: flex;
+  flex-direction: column;
+}*/
 </style>

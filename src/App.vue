@@ -2,8 +2,6 @@
 <script setup> 是在单文件组件 (SFC) 中使用组合式 API 的编译时语法糖
 -->
 <script setup>
-import ListView from "@/components/list/ListView.vue";
-import VirtualListView from "@/components/list/VirtualListView.vue";
 import {ref, watch, shallowRef, reactive, computed, watchEffect, getCurrentInstance, inject} from "vue";
 import {useMouse, useEventListener} from "@/js/mouse.js";
 import {useFetch} from "@/js/fetch.js";

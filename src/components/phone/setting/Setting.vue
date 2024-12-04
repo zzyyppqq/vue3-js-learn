@@ -69,7 +69,6 @@ function clickPrompt(){
 
 <template>
   <div>
-    <TabbarView/>
     <van-nav-bar title="Setting"></van-nav-bar>
     <p>js调用Android函数的三种方法</p>
     <div class="container">
@@ -81,11 +80,14 @@ function clickPrompt(){
       <button type="button" @click="clickConfirm()">clickConfirm</button>
       <button type="button" @click="clickPrompt()">clickPrompt</button>
     </div>
+    <TabbarView/>
   </div>
 </template>
 
 <style scoped>
-
+.van-nav-bar {
+  background-color: #63b9e4;
+}
 .container {
   display: flex;
   flex-direction: column;

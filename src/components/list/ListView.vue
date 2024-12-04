@@ -1,6 +1,6 @@
 <template>
   <div class="scroll-list" @scroll="onScroll">
-    <div v-for="(item, index) in visibleItems" :key="index">
+    <div v-for="(item, index) in visibleItems" :key="index" class="list-item">
       {{ item }}
     </div>
     <div v-if="loading" class="loading">Loading...</div>
@@ -34,11 +34,21 @@ onMounted(() => {
 
 <style scoped>
 .scroll-list {
-  height: 400px;
+  height: 100%;
   overflow-y: auto;
+}
+
+.list-item {
+  padding: 10px;
+  align-content: center;
+  height: 50px;
+  background-color: #63b9e4;
+  margin: 2px;
 }
 
 .loading {
   text-align: center;
 }
+
+
 </style>

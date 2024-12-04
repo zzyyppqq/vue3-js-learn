@@ -12,9 +12,19 @@ const onMyHome = () => {
   router.push({ path: '/my-home' })
 }
 
+const listViewPage = () => {
+  router.push({ path: '/list-view' })
+}
+
 const vanListPage = () => {
   router.push({ path: '/van-list-view' })
 }
+
+const virtualListPage = () => {
+  router.push({ path: '/virtual-list-view' })
+}
+
+
 
 </script>
 
@@ -24,14 +34,15 @@ const vanListPage = () => {
     <van-nav-bar fixed="true" placeholder title="Home" />
 
     <div class="content">
-      <van-button plain type="primary" @click="onMyHome">MyHome</van-button>
+      <van-button type="primary" @click="onMyHome">MyHome</van-button>
+      <van-button type="success" @click="listViewPage">list</van-button>
       <van-button type="default" @click="vanListPage">van list</van-button>
-      <van-button type="success">成功按钮</van-button>
-      <van-button type="default">默认按钮</van-button>
-      <van-button type="danger">危险按钮</van-button>
-      <van-button type="warning">警告按钮</van-button>
+      <van-button type="danger" @click="virtualListPage">virtual list</van-button>
+      <van-button type="warning" @click="router.push('/canvas-view')">canvas view</van-button>
+      <van-button @click="router.push('/webgl-view')">webgl view</van-button>
+      <van-button @click="router.push('/webgpu-view')">webgpu view</van-button>
 
-      <van-button disabled type="primary">禁用状态</van-button>
+      <van-button plain disabled type="primary">禁用状态</van-button>
       <van-button disabled type="success">禁用状态</van-button>
 
       <van-slider v-model="value" @change="onChange"></van-slider>
