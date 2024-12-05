@@ -6,6 +6,7 @@ import App from './App.vue'
 import myDirective, {installPlugin} from "@/js/directive.js";
 import i18nPlugin from "@/plugin/i18n.js";
 import {createPinia} from "pinia";
+import piniaPersist from 'pinia-plugin-persist'
 import router from "@/router/router.js";
 // 1. 引入你需要的组件
 import Vant from "vant";
@@ -41,6 +42,7 @@ installPlugin(app)
 app.use(myDirective)
 // 创建一个 pinia 实例 (根 store) 并将其传递给应用
 const pinia = createPinia()
+pinia.use(piniaPersist)
 app.use(pinia)
 
 app.use(i18nPlugin, {

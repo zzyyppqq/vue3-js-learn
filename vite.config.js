@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import DefineOptions from 'unplugin-vue-define-options/vite';
+import {VantResolver} from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,12 +25,19 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vueDevTools(),
-    DefineOptions() // 启用 DefineOptions 插件
+    //vueDevTools(),
+    DefineOptions(), // 启用 DefineOptions 插件
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true, // 允许 Less 中的 JS 表达式（如：计算）
+      },
+    },
+  }
 })

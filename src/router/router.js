@@ -73,6 +73,14 @@ const _routes = [
             },
         ]
     },
+    {
+        name: 'loginPage',
+        path: '/loginPage',
+        component: () => import('@/wanandroid/login/LoginPage.vue'),
+        meta: {
+            keepAlive: true,
+        },
+    }
 ]
 
 

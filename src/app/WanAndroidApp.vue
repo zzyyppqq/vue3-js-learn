@@ -25,7 +25,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: scroll; /* 允许滚动 */
   overflow: auto; /* 添加滚动条 */
-  background-color: white;
+  /*background-color: white;*/
 }
 
 * {
@@ -36,7 +36,7 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  /*background-color: white;*/
 }
 
 /*路由区域全屏，且没有边距*/
@@ -49,7 +49,7 @@ html, body {
   bottom: 0;
   margin: 0 auto;
   -webkit-overflow-scrolling: touch;
-  background-color: white;
+  /*background-color: white;*/
 }
 
 </style>
