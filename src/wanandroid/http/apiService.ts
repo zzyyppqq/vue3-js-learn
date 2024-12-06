@@ -1,12 +1,12 @@
 import httpRequest from "./request"
-import {HomeArticleModel} from "../model/HomeArticleModel";
-import {BannerModelChild} from "../model/BannerModel";
-import {SystemModel} from "../model/SystemModel";
-import {WechatTabModel} from "../model/WechatTabModel";
-import {SiteModel} from "../model/SiteModel";
-import {ProjectTypeModel} from "../model/ProjectTypeModel";
-import {ProjectListModel} from "../model/ProjectListModel";
-import {LoginModel} from "../model/LoginModel";
+import {HomeArticleModel} from "@/wanandroid/model/HomeArticleModel";
+import {BannerModelChild} from "@/wanandroid/model/BannerModel";
+import {SystemModel} from "@/wanandroid/model/SystemModel";
+import {WechatTabModel} from "@/wanandroid/model/WechatTabModel";
+import {SiteModel} from "@/wanandroid/model/SiteModel";
+import {ProjectTypeModel} from "@/wanandroid/model/ProjectTypeModel";
+import {ProjectListModel} from "@/wanandroid/model/ProjectListModel";
+import {LoginModel} from "@/wanandroid/model/LoginModel";
 
 
 // let baseUrl = process.env.VUE_APP_BASE_URL;

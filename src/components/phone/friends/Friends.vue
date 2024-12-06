@@ -1,8 +1,8 @@
 <script setup>
 
 import TabbarView from "@/components/phone/tabbar/TabbarView.vue";
-import api from "@/http/axios_simple.js";
-import apiService from "@/http/apiService"
+import api from "@/wanandroid/http/axios_simple.js";
+import apiService from "@/wanandroid/http/apiService"
 
 console.log("http getHomeList")
 apiService.getHomeList(1).then((json) => {

@@ -1,7 +1,7 @@
 <script setup>
 import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
-import apiService from "@/http/apiService";
+import apiService from "@/wanandroid/http/apiService";
 import {showFailToast, showSuccessToast, showToast} from "vant";
 import {useUserStore} from "@/wanandroid/store/userStore.js";
 
@@ -10,10 +10,12 @@ const router = useRouter()
 console.log("LoginPage route fullPath: ", route.fullPath)
 
 const userStore = useUserStore()
-const username = ref('')
-const password = ref('')
+console.log(`userStore.userInfo: ${userStore.userInfo}`)
+console.log(`userStore.loginInfo: ${userStore.loginInfo}`)
+const username = ref(userStore.loginInfo.username)
+const password = ref(userStore.loginInfo.password)
 const onSubmit = async (loginInfo) => {
-  console.log('submit: ', loginInfo)
+  console.log('submit loginInfo: ', loginInfo)
   if (loginInfo.username == '' || loginInfo.password == '') {
     showFailToast("账号或密码不能为空")
     return
@@ -25,6 +27,7 @@ const onSubmit = async (loginInfo) => {
   userStore.setUserInfo(data)
   userStore.setLoginState(true)
   showSuccessToast("登录成功")
+  userStore.setLoginInfo(loginInfo)
   router.back()
 }
 

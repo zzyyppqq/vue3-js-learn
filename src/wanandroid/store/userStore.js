@@ -6,6 +6,7 @@ export const useUserStore = defineStore("userInfo", {
         return {
             hasLogin: false,
             userInfo: {},
+            loginInfo: {}
         }
     },
     getters: {
@@ -14,11 +15,21 @@ export const useUserStore = defineStore("userInfo", {
         },
         getUserInfo: (state) => {
             return state.userInfo
+        },
+        getLoginInfo: (state) => {
+            return state.loginInfo
         }
     },
     actions: {
         setLoginState(loginState) {
             this.hasLogin = loginState
+        },
+        setLoginInfo(loginInfo) {
+            if (loginInfo) {
+                this.loginInfo = loginInfo
+            } else {
+                this.loginInfo = {}
+            }
         },
         setUserInfo(userInfo) {
             if (userInfo) {
