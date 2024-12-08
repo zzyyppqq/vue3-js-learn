@@ -125,7 +125,7 @@ console.log(i18n.greetings.hello)
                   @enlarge-text="postFontSize += 0.1" @enlarge-text1="postFontSize += 0.2"/>
       </div>
       <!--      <OptionsApi></OptionsApi>-->
-      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="12" height="12"/>
+<!--      <img alt="Vue logo" class="logo" src=/src/assets/logo.svg" width="12" height="12"/>-->
 
       <div class="wrapper">
         <p>Mouse position is at: {{ x }}, {{ y }}</p>

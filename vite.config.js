@@ -28,6 +28,7 @@ export default defineConfig({
     //vueDevTools(),
     DefineOptions(), // 启用 DefineOptions 插件
   ],
+  base: './',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
