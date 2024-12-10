@@ -7,7 +7,7 @@ import myDirective, {installPlugin} from "@/js/directive.js";
 import i18nPlugin from "@/plugin/i18n.js";
 import {createPinia} from "pinia";
 import piniaPersist from 'pinia-plugin-persist'
-import router from "@/router/router.js";
+import router from "@/wanandroid/route/router.js";
 // 1. 引入你需要的组件
 import Vant from "vant";
 // 2. 引入组件样式
@@ -52,7 +52,7 @@ app.use(i18nPlugin, {
 })
 /**
  * 全局注册 RouterView 和 RouterLink 组件。
- * 添加全局 $router 和 $route 属性。
+ * 添加全局 $route 和 $route 属性。
  * 启用 useRouter() 和 useRoute() 组合式函数。
  */
 app.use(router)

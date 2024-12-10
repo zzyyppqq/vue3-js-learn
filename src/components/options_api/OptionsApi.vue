@@ -18,7 +18,7 @@ export default {
     console.log(this.count)
     // props title
     console.log(this.title)
-    console.log("$router: ", this.$router)
+    console.log("$route: ", this.$router)
     console.log("$route: ", this.$route)
   }
 }

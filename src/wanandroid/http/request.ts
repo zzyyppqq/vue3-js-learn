@@ -2,6 +2,9 @@ import HttpRequest from "./http"
 import {closeToast, showFailToast, showLoadingToast} from "vant";
 import 'vant/es/toast/style';
 import {AxiosError} from "axios";
+// import {useUserStore} from "../store/userStore";
+// import router from "@/wanandroid/route/router";
+
 /**
  *  为什么我们要对axios进行封装？
  * 1.外部依赖库，有停止维护的风险，将项目中使用的方法逻辑封装到一个文件/文件夹中同意导出，方便更换库，有利于维护
