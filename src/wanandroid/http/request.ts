@@ -2,8 +2,8 @@ import HttpRequest from "./http"
 import {closeToast, showFailToast, showLoadingToast} from "vant";
 import 'vant/es/toast/style';
 import {AxiosError} from "axios";
-// import {useUserStore} from "../store/userStore";
-// import router from "@/wanandroid/route/router";
+import {useUserStore} from "@/wanandroid/store/userStore";
+import router from "@/wanandroid/route/router";
 
 /**
  *  为什么我们要对axios进行封装？
@@ -49,14 +49,15 @@ const httpRequest = new HttpRequest({
             }
 
             if (config.checkLoginState) {
-                // if (userStore.getLoginState) {
-                //     return config
-                // } else if (config.needJumpToLogin) {
-                //     router.push({
-                //         path: "/loginPage"
-                //     })
-                //     throw new AxiosError("请登录")
-                // }
+                const userStore = useUserStore()
+                if (userStore.hasLogin) {
+                    return config
+                } else if (config.needJumpToLogin) {
+                    router.push({
+                        path: "/loginPage"
+                    })
+                    throw new AxiosError("请登录")
+                }
             }
             return config;
         },
