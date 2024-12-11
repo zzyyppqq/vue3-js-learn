@@ -87,6 +87,12 @@ button:focus-visible {
     }
 }
 
+.horizontal-layout {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
 .vertical-layout {
     width: 100vw;
     display: flex;

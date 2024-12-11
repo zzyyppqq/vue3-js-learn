@@ -76,11 +76,6 @@ const virtualListPage = () => {
 </template>
 
 <style scoped>
-.vertical-layout {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-}
 
 /*content区域需用单独的div包裹，通过padding-bottom，保证底部tabbar不覆盖内容*/
 .content {
