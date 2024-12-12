@@ -10,7 +10,7 @@ import {useRoute, useRouter} from "vue-router";
 
 const route = useRoute()
 const router = useRouter()
-console.log("App route fullPath: ", route.fullPath)
+console.log("App index fullPath: ", route.fullPath)
 
 
 </script>

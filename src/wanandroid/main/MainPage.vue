@@ -6,7 +6,7 @@ import {showToast} from "vant";
 
 const route = useRoute()
 const router = useRouter()
-console.log("MainPage route fullPath: ", route.fullPath)
+console.log("MainPage index fullPath: ", route.fullPath)
 
 const titles = ["首页","体系","公众号","项目","导航"]
 

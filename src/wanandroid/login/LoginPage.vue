@@ -7,7 +7,7 @@ import {useUserStore} from "@/wanandroid/store/userStore.js";
 
 const route = useRoute()
 const router = useRouter()
-console.log("LoginPage route fullPath: ", route.fullPath)
+console.log("LoginPage index fullPath: ", route.fullPath)
 
 const userStore = useUserStore()
 console.log(`userStore.userInfo: ${userStore.userInfo}`)

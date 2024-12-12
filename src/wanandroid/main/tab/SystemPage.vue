@@ -7,7 +7,7 @@ import {onMounted, reactive} from "vue";
 
 const route = useRoute()
 const router = useRouter()
-console.log("SystemPage route fullPath: ", route.fullPath)
+console.log("SystemPage index fullPath: ", route.fullPath)
 
 const [viewState, requestApi] = useRequestStatus()
 

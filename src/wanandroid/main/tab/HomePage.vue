@@ -10,7 +10,7 @@ import apiService from "@/wanandroid/http/apiService";
 
 const route = useRoute()
 const router = useRouter()
-console.log("HomePage route fullPath: ", route.fullPath)
+console.log("HomePage index fullPath: ", route.fullPath)
 
 const [viewState, requestApi] = useRequestStatus()
 

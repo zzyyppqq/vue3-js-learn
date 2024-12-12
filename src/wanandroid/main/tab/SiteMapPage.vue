@@ -7,7 +7,7 @@ import {inject, onMounted, reactive} from "vue";
 
 const route = useRoute()
 const router = useRouter()
-console.log("SiteMapPage route fullPath: ", route.fullPath)
+console.log("SiteMapPage index fullPath: ", route.fullPath)
 
 const toolHeight = inject("toolBarHeight")
 console.log("SiteMapPage toolHeight: ", toolHeight.value)

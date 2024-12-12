@@ -3,7 +3,7 @@ import {closeToast, showFailToast, showLoadingToast} from "vant";
 import 'vant/es/toast/style';
 import {AxiosError} from "axios";
 import {useUserStore} from "@/wanandroid/store/userStore";
-import router from "@/wanandroid/route/router";
+import router from "@/app/router/router";
 
 /**
  *  为什么我们要对axios进行封装？
@@ -23,7 +23,7 @@ import router from "@/wanandroid/route/router";
  * 什么时候需要创建多个实例？
  * 比如baseURL不同，且在这个baseURL下请求多次，这个时候创建一个公用的请求实例能够提升代码的可维护性
  */
-
+// 由于引入顺序的问题，这将失败
 // const userStore = useUserStore()
 
 const httpRequest = new HttpRequest({

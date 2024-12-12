@@ -12,7 +12,7 @@ const likeSel = likeSelUrl
 
 const route = useRoute()
 const router = useRouter()
-console.log("WechatPage route fullPath: ", route.fullPath)
+console.log("WechatPage index fullPath: ", route.fullPath)
 
 const toolHeight = inject("toolBarHeight")
 console.log("WechatPage toolHeight: ", toolHeight.value)
