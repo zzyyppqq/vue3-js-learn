@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-
+import { ref, computed } from 'vue';
 
 export const useUserStore = defineStore("userInfo", {
     state: () => {
@@ -47,3 +47,33 @@ export const useUserStore = defineStore("userInfo", {
         enable: true
     }
 })
+
+
+
+export const useUserInfoStore2 = defineStore('userInfo2', () => {
+    const hasLogin = ref(false);
+    const userInfo = ref({});
+    const loginInfo = ref({});
+    // getting对应计算属性
+    const isLoggedIn = computed(() => hasLogin.value);
+    // actions对应普通方法
+    const setUserInfo = (info) => {
+        userInfo.value = info;
+        hasLogin.value = true;
+    };
+
+    const clearLogin = () => {
+        hasLogin.value = false;
+        userInfo.value = {};
+        loginInfo.value = {};
+    };
+
+    return {
+        hasLogin,
+        userInfo,
+        loginInfo,
+        isLoggedIn,
+        setUserInfo,
+        clearLogin,
+    };
+});

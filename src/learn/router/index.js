@@ -16,7 +16,7 @@ import Friends from "@/learn/page/phone/friends/Friends.vue";
 import MyHome from "@/learn/page/phone/home/MyHome.vue";
 
 const learnRoutes = [
-    { path: '/home', component: Home },
+    { path: '/home-page', component: Home },
     { path: '/learn-page', component: LearnPage },
     { path: '/my-home', component: MyHome },
     { path: '/van-list-view', component: VanListView },

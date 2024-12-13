@@ -2,7 +2,7 @@
 import {useRoute, useRouter} from "vue-router";
 
 const route = useRoute()
-const index = useRouter()
+const router = useRouter()
 console.log("WanAndroidApp index fullPath: ", route.fullPath)
 
 </script>

@@ -34,8 +34,10 @@ app.component('AsyncComponent', defineAsyncComponent(() =>
 ))
 // 应用实例会暴露一个 .config 对象允许我们配置一些应用级的选项
 // 例如定义一个应用级的错误处理器，用来捕获所有子组件上的错误：
-app.config.errorHandler = (err) => {
-    console.error(err)
+app.config.errorHandler = (err, instance, info) => {
+    console.error("err==>", err)
+    console.error("instance==>", instance)
+    console.error("info==>", info)
 }
 
 installPlugin(app)

@@ -6,6 +6,7 @@ import FullScreenApp from "@/app/FullScreenApp.vue";
 import PhoneApp from "@/app/PhoneApp.vue";
 import WanAndroidApp from "@/app/WanAndroidApp.vue";
 import {useRoute, useRouter} from "vue-router";
+import NewBeeApp from "@/app/NewBeeApp.vue";
 
 
 const route = useRoute()
@@ -16,7 +17,8 @@ console.log("App index fullPath: ", route.fullPath)
 </script>
 
 <template>
-    <WanAndroidApp />
+<!--    <WanAndroidApp />-->
+    <NewBeeApp />
 </template>
 
 <style scoped>

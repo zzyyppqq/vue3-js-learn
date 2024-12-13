@@ -3,7 +3,7 @@ import { createWebHashHistory, createRouter } from 'vue-router'
 const wanAndroidRoutes = [
     {
         name: 'mainPage',
-        path: '/',
+        path: '/mainPage',
         component: () => import('@/wanandroid/main/MainPage.vue'),
         meta: {
             keepAlive: true,
