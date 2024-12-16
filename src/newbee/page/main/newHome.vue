@@ -1,12 +1,13 @@
 <script setup>
 
 import {onMounted, reactive} from "vue";
-import homeApi from "@/newbee/service/homeApi.js"
 import {userCartStore} from "@/newbee/store";
 import {getLocal} from "@/newbee/utils/storageUtil.js";
 import {closeToast, showLoadingToast} from "vant";
 import {categoryList} from "@/newbee/data/data.js";
 import TabBarView from "@/newbee/componment/TabBarView.vue";
+import {getHome} from "@/newbee/service/homeApi.js"
+
 
 const {count, cartStore} = userCartStore()
 
@@ -29,8 +30,7 @@ onMounted(async () => {
     forbidClick: true
   });
   try  {
-    const {data} = await homeApi.getHome()
-    console.log('Home data: ', data)
+    const {data} = await getHome()
     state.swiperList = data.carousels
     state.newGoodses = data.newGoodses
     state.hots = data.hotGoodses

@@ -1,10 +1,6 @@
 import axios from '../http/axios'
 
-function getHome() {
+export function getHome() {
     return axios.get('/index-infos');
-}
-
-export default {
-  getHome
 }
 
