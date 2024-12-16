@@ -55,7 +55,7 @@ onMounted(async () => {
         <ListScroll :scroll-data="state.categoryData">
           <div class="swiper-container">
             <template v-for="(category, index) in state.categoryData">
-              <div class="swiper-side" v-if="state.currentIndex =s= category.categoryId" :key="index">
+              <div class="swiper-side" v-if="state.currentIndex == category.categoryId" :key="index">
                 <div class="category-list" v-for="(products, index) in category.secondLevelCategoryVOS" :key="index">
                   <p class="category-title">{{products.categoryName}}</p>
                   <div class="product-item" v-for="(product, index) in products.thirdLevelCategoryVOS" :key="index" @click="selectProduct(product)">

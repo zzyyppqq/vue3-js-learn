@@ -10,14 +10,15 @@
   },
   "dependencies": {
     "axios": "1.2.2",
+    "better-scroll": "2.3.0",
     "pinia": "^2.2.6",
     "pinia-plugin-persist": "^1.0.0",
+    "qs": "^6.13.1",
     "unplugin-vue-define-options": "^1.5.2",
     "vant": "^4.9.9",
     "vue": "^3.5.12",
     "vue-router": "^4.5.0",
-    "vue-virtual-scroller": "^2.0.0-beta.8",
-    "better-scroll": "2.3.0"
+    "vue-virtual-scroller": "^2.0.0-beta.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",

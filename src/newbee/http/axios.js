@@ -11,23 +11,28 @@ axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['token'] = getLocal('token') || ''
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-axios.interceptors.response.use((res) => {
-    if (typeof res.data != 'object') {
+axios.interceptors.request.use((req) => {
+    console.log(`axios request method: ${req.method}, url: ${req.url}`)
+})
+
+axios.interceptors.response.use((resp) => {
+    if (typeof resp.data != 'object') {
         showFailToast('服务器异常！')
-        return Promise.reject(res)
+        return Promise.reject(resp)
     }
-    if (res.data.resultCode != 200) {
-        if (res.data.message) showFailToast(res.data.message)
-        if (res.data.resultCode == 416) {
-            router.push({ path: '/logiin'})
+    console.log(`axios response resultCode: ${resp.data.resultCode}`)
+    if (resp.data.resultCode != 200) {
+        if (resp.data.message) showFailToast(resp.data.message)
+        if (resp.data.resultCode == 416) {
+            router.push({ path: '/login'})
         }
-        if (res.data.data && window.location.hash == '#/login') {
-            setLocal('token', res.data.data)
-            axios.defaults.headers['token'] == res.data.data
+        if (resp.data.data && window.location.hash == '#/login') {
+            setLocal('token', resp.data.data)
+            axios.defaults.headers['token'] == resp.data.data
         }
-        return Promise.reject(res.data)
+        return Promise.reject(resp.data)
     }
-    return res.data
+    return resp.data
 })
 
 export default axios

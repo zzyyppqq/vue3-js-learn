@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import BScroll from 'better-scroll';
 
 /**
@@ -72,8 +72,16 @@ const initScroll = () => {
   }
 };
 
+const nextTickFn = async (fn) => {
+  // 等待 DOM 更新完成
+  await nextTick();
+  fn()
+}
+
 onMounted(() => {
-  initScroll();
+  nextTickFn(() => {
+    initScroll();
+  })
 });
 
 watch(

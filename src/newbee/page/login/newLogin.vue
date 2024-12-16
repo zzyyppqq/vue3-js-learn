@@ -1,11 +1,14 @@
 <script setup>
 
+import SimpleHeader from "@/newbee/componment/SimpleHeader.vue";
 </script>
 
 <template>
-<h1>login</h1>
+  <div class="login">
+    <SimpleHeader />
+  </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 
 </style>

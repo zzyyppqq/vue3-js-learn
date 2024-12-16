@@ -1,6 +1,6 @@
 // import './assets/main.css'
 
-import { createApp, defineAsyncComponent } from 'vue'
+import {createApp, defineAsyncComponent, defineComponent} from 'vue'
 // 从一个单文件组件中导入根组件
 import App from './App.vue'
 import myDirective, {installPlugin} from "@/learn/util/directive.js";
@@ -19,6 +19,7 @@ import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import {createRouter, createWebHashHistory} from "vue-router";
 
 const app = createApp(App)
+
 // 使 v-focus 在所有组件中都可用
 app.directive('focus', {
     /* ... */
@@ -28,6 +29,19 @@ app.provide('appInstance', app);
 
 app.config.globalProperties.$app = app
 // const app = getCurrentInstance()?.proxy?.$app;
+
+// 在 Vue 3 中，Vue.extend 已被移除, 在Vue 3 中的替代方法defineComponent
+defineComponent({
+    name: 'MyComponent',
+    template: `<div>Hello {{ msg }}</div>`,
+    data() {
+        return {
+            msg: 'Vue 3 defineComponent'
+        };
+    }
+});
+// 在 Vue 3 中，Vue.component 仍然可以使用，但它是全局注册组件的方式。官方更推荐使用 局部组件注册 或 动态组件注册。
+
 // 异步组件可以使用 app.component() 全局注册
 app.component('AsyncComponent', defineAsyncComponent(() =>
     import('./learn/page/samples/async_component/SubComp.vue')

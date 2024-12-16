@@ -69,6 +69,10 @@ onMounted(() => {
       text-align: center;
       color: #666;
 
+      &.router-link-active {
+        color: #1baeae;
+      }
+
       li {
         text-align: center;
         font-size: 22px;
