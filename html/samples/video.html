@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        body {
+            font-size: 70%;
+            font-family: Verdana, Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var c = document.getElementById("myCanvas");
+        var cxt = c.getContext("2d");
+        cxt.fillStyle = "#FF0000";
+        cxt.fillRect(0, 0, 150, 75);
+
+        function cnvs_getCoordinates(e) {
+            x = e.clientX;
+            y = e.clientY;
+            document.getElementById("xycoordinates").innerHTML = "Coordinates:(" + x + "," + y + ")";
+        }
+
+        function cnvs_clearCoordinates() {
+            document.getElementById("xycoordinates").innerHTML="";
+        }
+
+    </script>
+
+</head>
+<body style="margin: 0px;">
+<div>
+    <video src="res/video_480x360.mp4" width="320" height="240" controls="controls"
+           autoplay="autoplay" loop="loop">
+        <!--<source src="/res/video_480x360.mp4" type="video/mp4">-->
+        your brower does not support the video tag.
+    </video>
+    <p/>
+    <audio controls="controls">
+        <source src="res/music.mp3">
+        your brower does not support the audio tag.
+    </audio>
+    <p/>
+    <canvas id="myCanvas" width="200" height="100">
+
+    </canvas>
+
+    <p>把鼠标悬停在下面的矩形上可以看到坐标</p>
+    <div id="coordiv" style="float: left;width: 199px;height: 99px;border: 1px solid #c3c3c3"
+         onmousemove="cnvs_getCoordinates(event)"
+         onmouseout="cnvs_clearCoordinates()">
+
+    </div>
+    <br/>
+    <div id="xycoordinates"></div>
+
+
+</div>
+</body>
+</html>
