@@ -2,12 +2,8 @@ import {createWebHashHistory, createRouter} from 'vue-router'
 
 const newBeeRoutes = [
     {
-        name: 'new-home',
         path: '/',
-        component: () => import('@/newbee/page/main/newHome.vue'),
-        meta: {
-            keepAlive: true,
-        }
+        redirect: '/home'
     },
     {
         name: 'new-home',
@@ -15,6 +11,7 @@ const newBeeRoutes = [
         component: () => import('@/newbee/page/main/newHome.vue'),
         meta: {
             keepAlive: true,
+            index: 1
         }
     },
     {
@@ -47,6 +44,14 @@ const newBeeRoutes = [
         component: () => import('@/newbee/page/login/newLogin.vue'),
         meta: {
             keepAlive: true,
+        }
+    },
+    {
+        path: '/product-list',
+        name: 'product-list',
+        component: () => import('@/newbee/page/ProductList.vue'),
+        meta: {
+            index: 2
         }
     },
 

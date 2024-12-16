@@ -29,19 +29,15 @@ onMounted(async () => {
     message: '加载中...',
     forbidClick: true
   });
-  try  {
-    const {data} = await getHome()
-    state.swiperList = data.carousels
-    state.newGoodses = data.newGoodses
-    state.hots = data.hotGoodses
-    state.recommends = data.recommendGoodses
-    state.loading = false
-  } catch (err) {
-    console.error('err: ', err)
-  }
+
+  const {data} = await getHome()
+  state.swiperList = data.carousels
+  state.newGoodses = data.newGoodses
+  state.hots = data.hotGoodses
+  state.recommends = data.recommendGoodses
+  state.loading = false
   closeToast()
 })
-
 
 
 const goTo = (url) => {
@@ -80,19 +76,19 @@ const goTo = (url) => {
     <div class="good">
       <header class="good-header">新品上线</header>
       <van-skeleton title :row="3" :loading="state.loading">
-          <div class="good-box">
-            <div class="good-item" v-for="item in state.newGoodses" :key="item.goodsId" @click="goToDetail(item)">
-<!--              <img :src="$filters.prefix(item.goodsCoverImg)" alt="">-->
-              <img :src="item.goodsCoverImg" alt="" :style="{ width: '100%', height: '100%' }">
-              <div class="good-desc">
-                <div class="title">{{ item.goodsName }}</div>
-                <div class="price">¥ {{ item.sellingPrice }}</div>
-              </div>
+        <div class="good-box">
+          <div class="good-item" v-for="item in state.newGoodses" :key="item.goodsId" @click="goToDetail(item)">
+            <!--              <img :src="$filters.prefix(item.goodsCoverImg)" alt="">-->
+            <img :src="item.goodsCoverImg" alt="" :style="{ width: '100%', height: '100%' }">
+            <div class="good-desc">
+              <div class="title">{{ item.goodsName }}</div>
+              <div class="price">¥ {{ item.sellingPrice }}</div>
             </div>
           </div>
+        </div>
       </van-skeleton>
     </div>
-    <TabBarView />
+    <TabBarView/>
   </div>
 
 </template>
@@ -179,6 +175,7 @@ img {
     }
   }
 }
+
 .good-box {
   display: flex;
   flex-wrap: wrap;
