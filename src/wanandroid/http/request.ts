@@ -3,7 +3,7 @@ import {closeToast, showFailToast, showLoadingToast} from "vant";
 import 'vant/es/toast/style';
 import {AxiosError} from "axios";
 import {useUserStore} from "@/wanandroid/store/userStore";
-import router from "@/app/router/router";
+import router from "@/app/router";
 
 /**
  *  为什么我们要对axios进行封装？

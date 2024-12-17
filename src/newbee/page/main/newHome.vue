@@ -1,13 +1,20 @@
 <script setup>
 
-import {onMounted, reactive} from "vue";
+import {getCurrentInstance, onMounted, reactive} from "vue";
 import {userCartStore} from "@/newbee/store";
 import {getLocal} from "@/newbee/utils/storageUtil.js";
 import {closeToast, showLoadingToast} from "vant";
 import {categoryList} from "@/newbee/data/data.js";
 import TabBarView from "@/newbee/componment/TabBarView.vue";
 import {getHome} from "@/newbee/service/homeApi.js"
-
+import {useRouter} from "vue-router";
+import router from "@/app/router"
+const router1 = useRouter()
+// 这两个实例是基于同一个 Vue Router 管理的，但它们在不同的上下文中被创建和获取，
+// 因此 在内存地址上是不同的，即 router !== router1。
+// router1 是你通过 useRouter() 获取的 当前组件实例中的路由实例。
+// 这个实例可能是 Vue Router 自动注入到每个组件中的。
+console.log(`router === router1: ${router === router1}`)
 
 const {count, cartStore} = userCartStore()
 

@@ -7,7 +7,7 @@ import myDirective, {installPlugin} from "@/learn/util/directive.js";
 import i18nPlugin from "@/learn/plugin/i18n.js";
 import {createPinia} from "pinia";
 import piniaPersist from 'pinia-plugin-persist'
-import router from "@/app/router/router.js";
+import router from "@/app/router";
 // 1. 引入你需要的组件
 import Vant from "vant";
 // 2. 引入组件样式
@@ -17,7 +17,7 @@ import '@/wanandroid/css/style.css'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import {createRouter, createWebHashHistory} from "vue-router";
-
+import {SingletonApp} from '@/app/global'
 const app = createApp(App)
 
 // 使 v-focus 在所有组件中都可用
@@ -28,6 +28,12 @@ app.directive('focus', {
 app.provide('appInstance', app);
 
 app.config.globalProperties.$app = app
+app.config.globalProperties.$router = router
+
+new SingletonApp()
+    .setApp(app)
+    .setRouter(router)
+
 // const app = getCurrentInstance()?.proxy?.$app;
 
 // 在 Vue 3 中，Vue.extend 已被移除, 在Vue 3 中的替代方法defineComponent

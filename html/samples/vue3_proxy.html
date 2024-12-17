@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2 Simplified Two-way Binding</title>
+</head>
+<body>
+<div id="app">
+<!--    <input type="text" v-model="message">-->
+<!--    <p>{{ message }}</p>-->
+    <input type="text">
+    <p></p>
+</div>
+
+<script>
+    function defineReactive(obj) {
+        return new Proxy(obj, {
+            get(target, key) {
+                // 监听属性的读取操作
+                console.log(`Getting value of ${key}: ${target[key]}`);
+                return target[key];
+            },
+            set(target, key, value) {
+                // 监听属性的修改操作
+                console.log(`Setting value of ${key} to: ${value}`);
+                target[key] = value;
+                // 可以在这里触发视图更新的逻辑
+                render();
+                return true;
+            }
+        });
+    }
+
+    // 渲染函数，用于更新视图
+    function render() {
+        // 每次渲染都会更新 DOM
+        document.querySelector('p').textContent = data.message;
+        document.querySelector('input').value = data.message;
+    }
+
+    // 创建一个对象并使其变得响应式
+    let data = { message: 'Hello, Vue!' };
+    data = defineReactive(data);
+
+    // 初始渲染
+    render();
+
+    // 双向绑定：监听输入框的变化，更新 data 对象
+    document.querySelector('input').addEventListener('input', (e) => {
+        data.message = e.target.value;
+    });
+</script>
+</body>
+</html>

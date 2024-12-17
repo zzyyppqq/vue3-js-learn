@@ -4,10 +4,15 @@ import newBeeRoutes from "@/newbee/router/index.js";
 import learnRoutes from "@/learn/router/index.js";
 
 
+const fn = () => {
+    const result = createRouter({
+        history: createWebHashHistory(),
+        routes,
+    })
+    console.log(`createRouter: ${result}`)
+    return result
+}
 const routes = [...wanAndroidRoutes, ...newBeeRoutes, ...learnRoutes]
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
-})
+const router = fn()
 
 export default router

@@ -1,7 +1,8 @@
 import axios from "axios";
 import {showFailToast} from "vant";
-import router from '@/app/router/router.js'
+import router from '@/app/router'
 import {getLocal, setLocal} from "@/newbee/utils/storageUtil.js";
+import {SingletonApp, getGlobalProperties} from '@/app/global'
 
 console.log('import.meta.env: ', import.meta.env)
 // axios.defaults.withCredentials = true
@@ -36,7 +37,11 @@ instance.interceptors.response.use((resp) => {
     if (resp.data.resultCode != 200) {
         if (resp.data.message) showFailToast(resp.data.message)
         if (resp.data.resultCode == 416) {
-            router.push({ path: '/login'})
+           router.push({ path: '/login'})
+            // 可用单例
+            // new SingletonApp().getRouter().push({ path: '/login'})
+            // 在网络请求中getCurrentInstance()为null，即使挂在了
+            //getGlobalProperties().$router.push({ path: '/login'})
         }
         if (resp.data.data && window.location.hash == '#/login') {
             setLocal('token', resp.data.data)

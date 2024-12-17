@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2 Simplified Two-way Binding</title>
+</head>
+<body>
+<div id="app">
+<!--    <input type="text" v-model="message">-->
+<!--    <p>{{ message }}</p>-->
+    <input type="text">
+    <p></p>
+</div>
+
+<script>
+    function defineReactive(obj, key, value) {
+        Object.defineProperty(obj, key, {
+            enumerable: true,
+            configurable: true,
+            get() {
+                return value;
+            },
+            set(newValue) {
+                value = newValue;
+                // 在这里，模拟视图更新
+                render();
+            }
+        });
+    }
+
+    function observe(obj) {
+        if (typeof obj !== 'object' || obj === null) return;
+
+        Object.keys(obj).forEach(key => {
+            defineReactive(obj, key, obj[key]);
+        });
+    }
+
+    // 渲染函数，用于更新视图
+    function render() {
+        document.querySelector('p').textContent = data.message;
+        document.querySelector('input').value = data.message;
+    }
+
+    // 创建数据对象
+    let data = { message: "Hello, Vue!" };
+    observe(data);
+
+    // 初始渲染
+    render();
+
+    // 将 data 绑定到页面的 input 元素
+    document.querySelector('input').addEventListener('input', (e) => {
+        data.message = e.target.value;
+    });
+</script>
+</body>
+</html>
