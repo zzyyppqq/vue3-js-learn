@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul id="container"></ul>
+</div>
+
+<script>
+    //需要插入的容器
+    let ul = document.getElementById('container');
+    // 插入十万条数据
+    let total = 10000;
+    // 一次插入 20 条
+    let once = 20;
+    //总页数
+    let page = total/once
+    //每条记录的索引
+    let index = 0;
+    //循环加载数据
+    function loop(curTotal,curIndex){
+        if(curTotal <= 0){
+            return false;
+        }
+        //每页多少条
+        let pageCount = Math.min(curTotal , once);
+        // 与setTimeout相比，requestAnimationFrame最大的优势是由系统来决定回调函数的执行时机。
+        // 如果屏幕刷新率是60Hz,那么回调函数就每16.7ms被执行一次
+        // 如果刷新率是75Hz，那么这个时间间隔就变成了1000/75=13.3ms
+        window.requestAnimationFrame(function(){
+            for(let i = 0; i < pageCount; i++){
+                let li = document.createElement('li');
+                li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+                ul.appendChild(li)
+            }
+            loop(curTotal - pageCount,curIndex + pageCount)
+        })
+        /* setTimeout 闪屏现象
+        setTimeout(()=>{
+            for(let i = 0; i < pageCount; i++){
+                let li = document.createElement('li');
+                li.innerText = curIndex + i + ' : ' + ~~(Math.random() * total)
+                ul.appendChild(li)
+            }
+            loop(curTotal - pageCount,curIndex + pageCount)
+        },0)
+         */
+    }
+    loop(total,index);
+
+</script>
+</body>
+</html>

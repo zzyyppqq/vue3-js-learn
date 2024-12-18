@@ -98,6 +98,7 @@ const proxyUserInfo = new Proxy(userInfo, {
         return true
     }
 })
+
 // 删除属性
 // delete proxyUserInfo.name
 delete proxyUserInfo.age
