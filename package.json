@@ -21,9 +21,11 @@
     "vue-virtual-scroller": "^2.0.0-beta.8"
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.1.4",
     "less": "^4.2.1",
     "less-loader": "^12.2.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.2",
     "unplugin-vue-components": "^0.27.5",
     "vite": "^5.4.10",

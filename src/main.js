@@ -3,8 +3,8 @@
 import {createApp, defineAsyncComponent, defineComponent} from 'vue'
 // 从一个单文件组件中导入根组件
 import App from './App.vue'
-import myDirective, {installPlugin} from "@/learn/util/directive.js";
-import i18nPlugin from "@/learn/plugin/i18n.js";
+import myDirective, {installPlugin} from "@/learn/vue/util/directive.js";
+import i18nPlugin from "@/learn/vue/plugin/i18n.js";
 import {createPinia} from "pinia";
 import piniaPersist from 'pinia-plugin-persist'
 import router from "@/app/router";
@@ -37,6 +37,9 @@ new SingletonApp()
 // const app = getCurrentInstance()?.proxy?.$app;
 
 // 在 Vue 3 中，Vue.extend 已被移除, 在Vue 3 中的替代方法defineComponent
+// 通过 Vue.extend() 创建的构造器可以用 new 来实例化，适合局部使用，不必注册到全局。
+// 动态创建组件：适用于动态创建和管理组件，尤其是插件或一些库需要动态渲染组件时。
+// 代码复用：可以通过创建组件构造器实现代码复用，适合场景中需要多个实例化的地方。
 defineComponent({
     name: 'MyComponent',
     template: `<div>Hello {{ msg }}</div>`,
@@ -50,7 +53,7 @@ defineComponent({
 
 // 异步组件可以使用 app.component() 全局注册
 app.component('AsyncComponent', defineAsyncComponent(() =>
-    import('./learn/page/samples/async_component/SubComp.vue')
+    import('./learn/vue/page/samples/async_component/SubComp.vue')
 ))
 // 应用实例会暴露一个 .config 对象允许我们配置一些应用级的选项
 // 例如定义一个应用级的错误处理器，用来捕获所有子组件上的错误：

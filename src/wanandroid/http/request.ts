@@ -1,7 +1,7 @@
 import HttpRequest from "./http"
 import {closeToast, showFailToast, showLoadingToast} from "vant";
 import 'vant/es/toast/style';
-import {AxiosError} from "axios";
+import {AxiosError, AxiosHeaders} from "axios";
 import {useUserStore} from "@/wanandroid/store/userStore";
 import router from "@/app/router";
 
@@ -30,6 +30,11 @@ const httpRequest = new HttpRequest({
     baseURL: "/api",
     timeout: 10 * 1000,
     checkResultCode: true,
+    headers: new AxiosHeaders(
+        {
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    ),
     interceptorHooks: {
         requestInterceptor: (config) => {
             // const token = localCache.getCache('token');

@@ -1,6 +1,18 @@
 import {MyPromise} from "./MyPromise.js";
 
-Promise
+new Promise((resolve, reject) => {
+    // resolve('no')
+    return new Promise((resolve, reject) => {
+        resolve('ok')
+    })
+}).then(res => {
+    console.log(res)
+}).catch(err  => {
+    console.log(err)
+})
+
+
+
 // order 手动控制测试用例类型
 const order = 1
 switch (order) {

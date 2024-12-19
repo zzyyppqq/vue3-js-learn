@@ -1,4 +1,10 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse,} from "axios";
+import axios, {
+    AxiosInstance,
+    AxiosRequestConfig,
+    AxiosRequestHeaders,
+    AxiosResponse,
+    InternalAxiosRequestConfig,
+} from "axios";
 import 'vant/es/toast/style';
 import {errorHandler} from "./request";
 
@@ -35,7 +41,7 @@ interface InterceptorHooks {
     responseInterceptorCatch?: (error: any) => any;
 }
 
-interface HttpRequestConfig extends AxiosRequestConfig {
+interface HttpRequestConfig extends InternalAxiosRequestConfig {
     showLoading?: boolean; //是否展示请求loading
     checkResultCode?: boolean;//是否检验响应结果码
     checkLoginState?: boolean //校验用户登陆状态
