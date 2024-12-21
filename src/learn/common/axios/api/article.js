@@ -1,4 +1,4 @@
-import axios from "@/common/axios/http.js";
+import axios from "@/learn/common/axios/http.js";
 import qs from "qs";
 
 const article = {

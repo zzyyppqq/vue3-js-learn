@@ -17,10 +17,19 @@ console.log("App index fullPath: ", route.fullPath)
 </script>
 
 <template>
-<!--    <WanAndroidApp />-->
-    <NewBeeApp />
+  <template v-if="$appName==='wanandroid'"><WanAndroidApp /></template>
+  <template v-else-if="$appName==='newbee'"><NewBeeApp /></template>
+  <template v-else-if="$appName=='phoneapp'"><PhoneApp /></template>
+  <template else><FullScreenApp /></template>
+
 </template>
 
-<style scoped>
-
+<style lang="less">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
 </style>

@@ -6,7 +6,7 @@
 // this.$api.article.login()
 
 import {onMounted} from "vue";
-import {article} from "@/common/axios/api";
+import {article} from "@/learn/common/axios/api/index.js";
 onMounted(() => {
   article.login({username: 'zyp', password: '123'})
       .then(res => {

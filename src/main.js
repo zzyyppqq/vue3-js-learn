@@ -12,13 +12,33 @@ import router from "@/app/router";
 import Vant from "vant";
 // 2. 引入组件样式
 import 'vant/lib/index.css';
-import '@/wanandroid/css/style.css'
 
 import VueVirtualScroller from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import {createRouter, createWebHashHistory} from "vue-router";
 import {SingletonApp} from '@/app/global'
+
 const app = createApp(App)
+
+const appName = 'newbee'
+app.config.globalProperties.$appName = appName
+
+// 主题
+// 动态导入不同的 CSS 文件
+const loadTheme = (theme) => {
+    if (theme === 'wanandroid') {
+        import('@/wanandroid/css/style.css').then(() => {
+            console.log('wanandroid theme');
+        });
+    } else if (theme === 'newbee') {
+        import('@/newbee/assets/main.css').then(() => {
+            console.log('newbee theme');
+        });
+        import('@/newbee/common/style/theme.css').then(() => {
+            console.log('newbee theme');
+        });
+    }
+};
+loadTheme(appName)
 
 // 使 v-focus 在所有组件中都可用
 app.directive('focus', {
@@ -78,13 +98,24 @@ app.use(i18nPlugin, {
         hello: 'Bonjour!'
     }
 })
+
+// 全局过滤器
+app.config.globalProperties.$filters = {
+    prefix(url) {
+        if (url && url.startsWith('http')) {
+            return url
+        } else {
+            url = `http://backend-api-01.newbee.ltd${url}`
+            return url
+        }
+    }
+}
+
 /**
  * 全局注册 RouterView 和 RouterLink 组件。
  * 添加全局 $index 和 $index 属性。
  * 启用 useRouter() 和 useRoute() 组合式函数。
  */
-
-
 app.provide('router', router);
 app.config.globalProperties.$router = router
 app.use(router)

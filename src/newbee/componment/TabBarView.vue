@@ -3,6 +3,7 @@ import {userCartStore} from "@/newbee/store/index.js";
 import {onMounted} from "vue";
 import {getLocal} from "@/newbee/utils/storageUtil.js";
 import {useRoute, useRouter} from "vue-router";
+
 const cart = userCartStore()
 
 const route = useRoute()
@@ -19,38 +20,48 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="nav-bar van-hairline--top">
-    <ul class="nav-list">
-      <router-link class="nav-list-item active" to="home">
-        <li class="nbicon nblvsefenkaicankaoxianban-1"></li>
-        <span>首页</span>
-      </router-link>
-      <router-link  class="nav-list-item" to="category">
-        <li class="nbicon nbfenlei"></li>
-        <span>分类</span>
-      </router-link>
-      <router-link  class="nav-list-item" to="cart">
-        <li>
-          <van-icon  name="shopping-cart-o" :badge="!cart.count ? '' : cart.count" />
-        </li>
-        <span>购物车</span>
-      </router-link>
-      <router-link  class="nav-list-item" to="user">
-        <li class="nbicon nblvsefenkaicankaoxianban-"></li>
-        <span>我的</span>
-      </router-link>
-    </ul>
-  </div>
+<!--  <div>-->
+    <div class="nav-bar-placeholder"></div>
+    <div class="nav-bar van-hairline--top">
+      <ul class="nav-list">
+        <router-link class="nav-list-item active" to="home">
+          <li class="nbicon nblvsefenkaicankaoxianban-1"></li>
+          <span>首页</span>
+        </router-link>
+        <router-link class="nav-list-item" to="category">
+          <li class="nbicon nbfenlei"></li>
+          <span>分类</span>
+        </router-link>
+        <router-link class="nav-list-item" to="cart">
+          <li>
+            <van-icon name="shopping-cart-o" :badge="!cart.count ? '' : cart.count"/>
+          </li>
+          <span>购物车</span>
+        </router-link>
+        <router-link class="nav-list-item" to="user">
+          <li class="nbicon nblvsefenkaicankaoxianban-"></li>
+          <span>我的</span>
+        </router-link>
+      </ul>
+    </div>
+<!--  </div>-->
 </template>
 
 <style scoped lang="less">
+@import "@/newbee/common/style/mixin";
+
+.nav-bar-placeholder {
+  width: 100%;
+  height: 80px;
+}
 .nav-bar {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 60px;
   background-color: #fff;
-  z-index: 1;
+  z-index: 1000;
   padding: 5px 0;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -70,13 +81,14 @@ onMounted(() => {
       color: #666;
 
       &.router-link-active {
-        color: #1baeae;
+        color: @primary;
       }
 
       li {
         text-align: center;
         font-size: 22px;
       }
+
       span {
         font-size: 12px;
       }

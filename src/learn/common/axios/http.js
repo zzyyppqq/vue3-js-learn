@@ -1,7 +1,7 @@
 import axios from "axios";
 import QS from 'qs'
 import {Toast} from "vant";
-import {useStore} from './store'
+import {useStore} from './store/index.js'
 import {useRouter} from "vue-router";
 
 // const router = useRouter()

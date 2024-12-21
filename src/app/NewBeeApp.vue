@@ -13,8 +13,8 @@ console.log("NewBeeApp index fullPath: ", route.fullPath)
   </div>
 </template>
 
-
-<style scoped>
+<!--app中的style 不要加scope，需要是全局的-->
+<style lang="less">
 
 /* tabbar.css 或 App.vue 的 style */
 html, body {
@@ -28,15 +28,15 @@ html, body {
   /*background-color: white;*/
 }
 
-* {
-  box-sizing: border-box;
-}
-
 #app {
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  /*color: #2c3e50;*/
   /*background-color: white;*/
+
 }
 
 /*路由区域全屏，且没有边距*/
